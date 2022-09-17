@@ -32,10 +32,10 @@ func main() {
 	graphHandler := graph.NewHandler()
 	graphHandler.Register(router)
 
-	start(router)
+	startServer(router)
 }
 
-func start(router *mux.Router) {
+func startServer(router *mux.Router) {
 	listener, err := net.Listen("tcp", ":5050")
 
 	if err != nil {

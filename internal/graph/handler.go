@@ -21,11 +21,11 @@ func (h *handler) Register(router *mux.Router) {
 
 func (h *handler) Create() http.HandlerFunc {
 	var requestData struct {
-		Matrix               [][]int `json:"matrix"`
-		Start                int     `json:"start"`
-		End                  int     `json:"end"`
-		VertexCount          int     `json:"vertexCount"`
-		ShowIntermediateInfo bool    `json:"showIntermediateInfo"`
+		Matrix         [][]int `json:"matrix"`
+		Start          int     `json:"start"`
+		End            int     `json:"end"`
+		VertexCount    int     `json:"vertexCount"`
+		ShowDetailInfo bool    `json:"showDetailInfo"`
 	}
 
 	return func(response http.ResponseWriter, request *http.Request) {
@@ -35,6 +35,8 @@ func (h *handler) Create() http.HandlerFunc {
 		}
 
 		response.WriteHeader(200)
-		fmt.Println(requestData)
+
+		graph := initGraph(requestData.Matrix, requestData.VertexCount)
+		fmt.Println(graph)
 	}
 }
